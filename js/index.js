@@ -4,10 +4,6 @@ $(document).ready(function() {
 	
 });
 
-$("#query").change(function(){
-		$("#search").trigger("click");
-	});
-
 $(".more").click(function(){
 	$(".hidden").toggle("slow");
 });

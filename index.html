@@ -37,23 +37,12 @@
 							<a class="waves-effect waves-light btn more">more</a>
 						</div>
 						<div class="input-field col s12 m5 hidden">
-							<select id="searchCategory">
-								<option value="none" disabled selected>Choose your option</option>
-								<option value="text">Text file</option>
-								<option value="image">Image File</option>
-								<option value="pdf">PDF document</option>
-								<option value="audio">Audio file</option>
-								<option value="video">Video file</option>
-								<option value="other">Other file</option>
-							</select>
-							<label>Select Category</label>
-						</div>
-						<div class="input-field col s12 m5 hidden">
 							<select id="sortCategory">
 								<option value="" disabled selected>Choose your option</option>
-								<option value="dateModified">Date modified</option>
-								<option value="fileName">Name</option>
-								<option value="category">Category</option>
+								<option value="roomCost">Room Price</option>
+								<option value="locationX">location X</option>
+								<option value="locationY">location Y</option>
+								<option value="rating">rating</option>
 							</select>
 							<label>Sort by</label>
 						</div>
@@ -134,12 +123,21 @@
 var app = angular.module('hotelSearch', []);
 app.controller('hotelControl', function($scope,$http) {
 	$scope.$watch('query',function(val){
-		$http.get("getHotels.php?q="+val).then(function(response)
+		var searchParam = $("#sortCategory").val();
+		if(searchParam == "")
 		{
-			console.log((response.data.length));
-		    $scope.root = response.data.root;
-		});
-		
+			$http.get("getHotels.php?q="+val).then(function(response)
+			{
+			    $scope.root = response.data.root;
+			});
+		}
+		else
+		{
+			$http.get("getHotels.php?q="+val+"&s="+searchParam).then(function(response)
+			{
+			    $scope.root = response.data.root;
+			});
+		}
 	} );
 	
 });

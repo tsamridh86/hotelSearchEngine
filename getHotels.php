@@ -4,6 +4,8 @@
 	if(isset($_GET['q']))
 	{	
 		$query = "select * from hotel where hotelName like '%".$_GET['q']."%'";
+		if (isset($_GET['s']))
+			$query = $query." order by ".$_GET['s']." asc";
 		$result = $conn->executeQuery($query);
 		$r = [];
 		while($row = mysqli_fetch_assoc($result))
