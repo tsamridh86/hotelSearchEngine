@@ -13,11 +13,7 @@ $(".more").click(function(){
 });
 
 
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
+//This is to login a user
 $("#loginButton").click(function(){
 	var userName = $("#userName").val();
 	var password = $("#password").val();
@@ -31,7 +27,7 @@ $("#loginButton").click(function(){
 		alert("No password!");
 		return false;
 	}
-	var getFrom = 'login.php?userName='+userName+"&password="+password;
+	var getFrom = 'login.php?userName='+userName+'&password='+password;
 	$.ajax({
 		url : getFrom,
 		dataType : 'text',
@@ -40,7 +36,15 @@ $("#loginButton").click(function(){
 		type : 'get',
 		success : function(response)
 		{
-			alert(response);
+			if(response == "invalid login details.")
+			{
+				alert("invalid login details");
+				return false;
+			}
+			var loggedIn = JSON.parse(response);
+			alert("Welcome! "+loggedIn['userName']);
+			$("#userId").val(loggedIn['userId']);
+			$("#userNamePlace").val(loggedIn['userName']);
 		},
 		error : function(response)
 		{
@@ -50,6 +54,8 @@ $("#loginButton").click(function(){
 	});
 });
 
+
+//This is to signup a new user.
 $("#signUpButton").click(function(){
 	var newUserName = $("#newUserName").val();
 	var newPassword = $("#newPassword").val();
