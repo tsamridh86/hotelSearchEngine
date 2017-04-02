@@ -18,86 +18,73 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-
-//function to upload the file
-$("#uploadFile").click(function(){
-	var fileData = $("#uploadTarget").prop('files')[0];
-	if(fileData == null)
+$("#loginButton").click(function(){
+	var userName = $("#userName").val();
+	var password = $("#password").val();
+	if(!userName)
 	{
-		alert("No file to be added!");
+		alert("No userName!");
 		return false;
 	}
-	var formData = new FormData();
-	formData.append('file',fileData);
+	else if(!password)
+	{
+		alert("No password!");
+		return false;
+	}
+	var getFrom = 'login.php?userName='+userName+"&password="+password;
 	$.ajax({
-		url : 'addFile.php',
-			dataType : 'text' , //what to expect from the server
-			cache : false,
-			contentType : false,
-			processData : false,
-			data : formData,
-			type: 'post',
-			success : function(response)
-			{
-				alert(response);
-			}
-		});
-	});
-
-//function to update the file
-$("#updateFile").click(function(){
-	var fileData = $("#updateTarget").prop('files')[0];
-	var fileId = $("#updateId").val();
-	if (!fileId)
-	{
-		alert("Replacement Id Not Found");
-		return false;
-	}
-	if(fileData == null )
-	{
-		alert("Replacement File Not Found");
-		return false;
-	}
-	var formData = new FormData();
-	formData.append('updateId',fileId);
-	formData.append('file',fileData);
-	$.ajax({
-		url : 'updateFile.php',
+		url : getFrom,
 		dataType : 'text',
 		cache : false,
 		contentType : false,
-		processData : false,
-		data : formData,
-		type : 'post',
-		success : function(response){
+		type : 'get',
+		success : function(response)
+		{
 			alert(response);
-			$("#search").trigger("click");
+		},
+		error : function(response)
+		{
+			alert("ajax error");
+			alert(response);
 		}
 	});
 });
 
-
-//function to delete the file
-$("#deleteFile").click(function(){
-	var fileId = $("#deleteId").val();
-	if(!fileId)
+$("#signUpButton").click(function(){
+	var newUserName = $("#newUserName").val();
+	var newPassword = $("#newPassword").val();
+	var rePassword = $("#rePassword").val();
+	if(!newUserName)
 	{
-		alert("No File to be deleted");
-		return false;
+		alert("No userName");
+	}
+	if(!newPassword)
+	{
+		alert("No password!");
+	}
+	if(newPassword != rePassword)
+	{
+		alert("The passwords do not match");
 	}
 	var formData = new FormData();
-	formData.append('deleteId',fileId);
+	formData.append('newUserName',newUserName);
+	formData.append('newPassword',newPassword);
 	$.ajax({
-		url : 'deleteFile.php',
+		url : 'login.php',
 		dataType : 'text',
 		cache : false,
 		contentType : false,
 		processData : false,
 		data : formData,
 		type : 'post',
-		success : function(response){
+		success : function(response)
+		{
 			alert(response);
-			$("#search").trigger("click");
+		},
+		error : function(response)
+		{
+			alert("ajax error!" + response);
 		}
 	});
+
 });
