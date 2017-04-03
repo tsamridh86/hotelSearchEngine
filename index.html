@@ -61,7 +61,7 @@
 			<div class='card white darken-1'>
 				<div class='card-content black-text'>
 					<span class='card-title'><a>{{x.hotelName}}</a></span>
-					<a class="right bookNow" data-hotelId="{{x.hotelId}}" data-hotel-name="{{x.hotelName}}" data-room-cost="{{x.roomCost}}" onclick="bookNow(this);">Book Now</a>
+					<a class="right bookNow" data-hotel-id="{{x.hotelId}}" data-hotel-name="{{x.hotelName}}" data-room-cost="{{x.roomCost}}" onclick="bookNow(this);">Book Now</a>
 					<p> Hotel Rating : {{x.rating}}</p>
 					<p> Room Cost : {{x.roomCost}}</p>
 					<p> Location : {{x.locationX + " , " + x.locationY}}</p>
@@ -128,8 +128,14 @@
 		<div class="modal-content">
 		<h2>Confirm Booking </h2>
 		<p>Are you sure you want to book the hotel?</p>
+		<div class="row">
+		<div class="col s6">
 		<p id="modalHotelName"></p>
+		</div>
+		<div class="col s6">
+		</div>
 		<p id="modalPrice" class="right"></p>
+		</div>
 		<div class="modal-footer">
 			<a id="bookButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Book</a>
 			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>

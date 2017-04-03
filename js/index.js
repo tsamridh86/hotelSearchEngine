@@ -104,5 +104,31 @@ function bookNow(element)
 	$("#bookingModal").modal("open");
 	console.log($(element).data("hotel-name"));
 	$("#modalHotelName").text($(element).data("hotel-name"));
-	$("#modalPrice").text($(element).data("hotel-room-cost"));
+	$("#modalPrice").text($(element).data("room-cost"));
+	$("#bookButton").data("hotel-id",$(element).data("hotel-id"));
+	$("#bookButton").data("user-id",$("#userId").val());
 }
+
+$("#bookButton").click(function(){
+	var hotelId= $(this).data("hotel-id");
+	var userId = $(this).data("user-id");
+	var formData = new FormData();
+	formData.append('userId',userId);
+	formData.append('hotelId',userId);
+	$.ajax({
+		url: 'booking.php',
+		dataType : 'text',
+		cache : false,
+		contentType : false,
+		processData : false,
+		data : formData,
+		type : 'post',
+		success : function(response){
+			alert(response);
+		},
+		error : function(response){
+			alert("ajax error" + response);
+		}
+
+	});
+});
