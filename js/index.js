@@ -102,4 +102,7 @@ function bookNow(element)
 		return false;
 	}
 	$("#bookingModal").modal("open");
+	console.log($(element).data("hotel-name"));
+	$("#modalHotelName").text($(element).data("hotel-name"));
+	$("#modalPrice").text($(element).data("hotel-room-cost"));
 }
