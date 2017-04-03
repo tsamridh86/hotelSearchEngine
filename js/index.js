@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$('select').material_select();
 	$('.modal').modal();
+	$(".bookNow").hide();
+
 	
 });
 
@@ -90,3 +92,14 @@ $("#signUpButton").click(function(){
 	});
 
 });
+
+function bookNow(element)
+{
+	// alert($(element).data("hotelid"));
+	if($("#userId").val() < 0 )
+	{
+		alert("you need to login");
+		return false;
+	}
+	
+}
