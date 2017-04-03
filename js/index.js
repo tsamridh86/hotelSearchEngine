@@ -101,5 +101,5 @@ function bookNow(element)
 		alert("you need to login");
 		return false;
 	}
-	
+	$("#bookingModal").modal("open");
 }
