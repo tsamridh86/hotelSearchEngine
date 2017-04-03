@@ -25,9 +25,6 @@
 							<input placeholder="Type here" type="text" class="validate" ng-model="query">
 							<label for="query">Enter your query</label>
 						</div>
-						<div class="col s1 m1">
-							<a class="btn-floating waves-effect waves-light red shiftDown" id="search"><i class="material-icons">search</i></a>
-						</div>
 					</div>
 					<div class="row">
 						<div class="col s6 m1">
@@ -46,100 +43,113 @@
 							</select>
 							<label>Sort by</label>
 						</div>
+						<div class="switch col s12 m5 hidden">
+							<label>
+								Ascending
+								<input type="checkbox" id="sortParam">
+								<span class="lever"></span>
+								Desending
+							</label>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-	<div class='col s12 m6' ng-repeat="x in root">
+		<div class='col s12 m6' ng-repeat="x in root">
 			<div class='card white darken-1'>
-			 <div class='card-content black-text'>
-			<span class='card-title'><a>{{x.hotelName}}</a></span>
-			<p> Hotel Rating : {{x.rating}}</p>
-			<p> Room Cost : {{x.roomCost}}</p>
-			<p> Location : {{x.locationX + " , " + x.locationY}}
-			</div></div></div>
-	</div>
-	<div id="modal" class="modal">
-		<div class="modal-content">
-			<div class="row">
-				<div class="col s12">
-					<ul class="tabs">
-						<li class="tab col s6"><a id="init" href="#login">login</a></li>
-						<li class="tab col s6"><a href="#signup">signup</a></li>
-					</ul>
+				<div class='card-content black-text'>
+					<span class='card-title'><a>{{x.hotelName}}</a></span>
+					<p> Hotel Rating : {{x.rating}}</p>
+					<p> Room Cost : {{x.roomCost}}</p>
+					<p> Location : {{x.locationX + " , " + x.locationY}}
+					</div></div></div>
 				</div>
-				<div id="login" class="col s12">
-					<p><h4>Login</h4></p>
-					<form action="" enctype="multipart/form-data">
-						<div class="input-field col s12">
-						<i class="material-icons prefix" id="userNameParent">supervisor_account</i>
-						<input id="userName" type="text" name="userName" class="validate" required="">
-						<label for="icon_prefix">User Name</label>
+				<div id="modal" class="modal">
+					<div class="modal-content">
+						<div class="row">
+							<div class="col s12">
+								<ul class="tabs">
+									<li class="tab col s6"><a id="init" href="#login">login</a></li>
+									<li class="tab col s6"><a href="#signup">signup</a></li>
+								</ul>
+							</div>
+							<div id="login" class="col s12">
+								<p><h4>Login</h4></p>
+								<form action="" enctype="multipart/form-data">
+									<div class="input-field col s12">
+										<i class="material-icons prefix" id="userNameParent">supervisor_account</i>
+										<input id="userName" type="text" name="userName" class="validate" required="">
+										<label for="icon_prefix">User Name</label>
+									</div>
+									<div class="input-field col s12">
+										<i class="material-icons prefix">vpn_key</i>
+										<input id="password" type="password" name="userName" class="validate" required="">
+										<label for="icon_prefix">Password</label>
+									</div>
+								</form>
+								<div class="modal-footer">
+									<a id="loginButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Login</a>
+									<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								</div>
+							</div>
+							<div id="signup" class="col s12">
+								<p><h4>Sign Up</h4></p>
+								<form action="" method="post" enctype="multipart/form-data">
+									<div class="input-field col s12">
+										<i class="material-icons prefix" id="userNameParent">supervisor_account</i>
+										<input id="newUserName" type="text" name="userName" class="validate" required="">
+										<label for="icon_prefix">New User Name</label>
+									</div>
+									<div class="input-field col s12">
+										<i class="material-icons prefix">vpn_key</i>
+										<input id="newPassword" type="password" class="validate" required="">
+										<label for="icon_prefix">New Password</label>
+									</div>
+									<div class="input-field col s12">
+										<i class="material-icons prefix">vpn_key</i>
+										<input id="rePassword" type="password" class="validate" required="">
+										<label for="icon_prefix">Re-type Password</label>
+									</div>
+								</form>
+								<div class="modal-footer">
+									<a href="#!"  id="signUpButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Up</a>
+									<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+								</div>
+							</div>
 						</div>
-						<div class="input-field col s12">
-						<i class="material-icons prefix">vpn_key</i>
-						<input id="password" type="password" name="userName" class="validate" required="">
-						<label for="icon_prefix">Password</label>
-						</div>
-					</form>
-					<div class="modal-footer">
-						<a id="loginButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Login</a>
-						<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 					</div>
 				</div>
-				<div id="signup" class="col s12">
-					<p><h4>Sign Up</h4></p>
-					<form action="" method="post" enctype="multipart/form-data">
-						<div class="input-field col s12">
-						<i class="material-icons prefix" id="userNameParent">supervisor_account</i>
-						<input id="newUserName" type="text" name="userName" class="validate" required="">
-						<label for="icon_prefix">New User Name</label>
-						</div>
-						<div class="input-field col s12">
-						<i class="material-icons prefix">vpn_key</i>
-						<input id="newPassword" type="password" class="validate" required="">
-						<label for="icon_prefix">New Password</label>
-						</div>
-						<div class="input-field col s12">
-						<i class="material-icons prefix">vpn_key</i>
-						<input id="rePassword" type="password" class="validate" required="">
-						<label for="icon_prefix">Re-type Password</label>
-						</div>
-					</form>
-					<div class="modal-footer">
-						<a href="#!"  id="signUpButton" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Up</a>
-						<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-<script type="text/javascript" src="js/index.js">
-</script>
-<script>
-var app = angular.module('hotelSearch', []);
-app.controller('hotelControl', function($scope,$http) {
-	$scope.$watch('query',function(val){
-		var searchParam = $("#sortCategory").val();
-		if(searchParam == "")
-		{
-			$http.get("getHotels.php?q="+val).then(function(response)
-			{
-			    $scope.root = response.data.root;
-			});
-		}
-		else
-		{
-			$http.get("getHotels.php?q="+val+"&s="+searchParam).then(function(response)
-			{
-			    $scope.root = response.data.root;
-			});
-		}
-	} );
-	
-});
-</script>
-</html>
+			</body>
+			<script type="text/javascript" src="js/index.js">
+			</script>
+			<script>
+				var app = angular.module('hotelSearch', []);
+				app.controller('hotelControl', function($scope,$http) {
+					$scope.$watch('query',function(val){
+						var searchParam = $("#sortCategory").val();
+						var sortParam = $("#sortParam").prop("checked");
+						if(sortParam == false)
+							sortParam = "asc";
+						else 
+							sortParam = "desc";
+						if(searchParam == "")
+						{
+							$http.get("getHotels.php?q="+val).then(function(response)
+							{
+								$scope.root = response.data.root;
+							});
+						}
+						else
+						{
+							$http.get("getHotels.php?q="+val+"&s="+searchParam+"&u="+sortParam).then(function(response)
+							{
+								$scope.root = response.data.root;
+							});
+						}
+					} );
+
+				});
+			</script>
+			</html>
